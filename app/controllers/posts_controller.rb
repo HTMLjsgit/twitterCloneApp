@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new, :edit, :update]
-	before_action :post_find ,only: [:show, :edit, :update]
+	before_action :post_find ,only: [:show, :destroy]
+  before_action :is_mine, only: [:destroy]
   def index
   	@posts = Post.all
   end
@@ -21,11 +22,8 @@ class PostsController < ApplicationController
   def show
   end
 
-  def edit
-  end
-
-  def update
-    @post.update(create_params)
+  def destroy
+    @post.destroy
     redirect_to root_path
   end
 
