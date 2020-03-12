@@ -1,0 +1,6 @@
+<%= form_with model: @post, local: true do |f| %>
+	<%= f.text_area :body %><br>
+	<%= f.file_field :image %><br>
+	<%= f.file_field :video %><br>
+	<%= f.submit %>
+<% end %>

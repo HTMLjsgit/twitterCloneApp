@@ -1,0 +1,40 @@
+<div class="ShowPostBox">
+	<div class="userimageAndNameBox">
+		<% if @post.user_image? %>
+		<div class="imageBox">
+			<object>
+				<%= link_to root_path do %>
+					<%= image_tag @post.user_image,class: "user_image" %>
+				<% end %>
+			</object>
+		</div>
+		<% else %>
+		<div class="imageBox">
+			<object>
+				<%= link_to root_path do %>
+					<%= image_tag "人物アイコン.png",class: "user_image" %>
+				<% end %>
+			</object>
+		</div>
+		<% end %>
+		<object>
+			<h4>
+				<%= link_to @post.user_name ,root_path ,class: "link_toUser_name"%>
+			</h4>
+		</object>
+	</div>
+	<%= simple_format @post.body ,class: "post_body" %><br>
+	<div class="postideoAndImage">
+		<% if @post.video? %>
+			<%= video_tag @post.video, :autoplay => true, :loop => true ,width: "500px", height: "300px", controls: true, autobuffer: true ,id: "video",class: "Postvideo"%>
+		<% end %>
+		<% if @post.image? %>
+			<%= image_tag @post.image.url,class: "imagePost", id: "image" %>
+		<% end %>
+	</div>
+
+	<script>
+		document.getElementById('video').volume = 0;
+	</script>
+
+</div>

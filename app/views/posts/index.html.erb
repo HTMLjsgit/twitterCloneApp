@@ -1,0 +1,53 @@
+<% if user_signed_in? %>
+	<%= link_to "new" , new_post_path  ,data: {"turbolinks" => false}%>
+<% end %>
+<% @posts.each do |post| %>
+	<%= link_to post_path(post), data: {"turbolinks" => false} ,class: "link_toBoxAtag" do %>
+		<div class="postBox">
+			<div class="userimageAndNameBox">
+				<% if post.user_image? %>
+					<div class="imageBox">
+						<object>
+							<%= link_to root_path do %>
+								<%= image_tag post.user_image,class: "user_image" %>
+							<% end %>
+						</object>
+					</div>
+				<% else %>
+					<div class="imageBox">
+						<object>
+							<%= link_to root_path do %>
+								<%= image_tag "人物アイコン.png",class: "user_image" %>
+							<% end %>
+						</object>
+					</div>
+				<% end %>
+					<object>
+						<h4>
+							<%= link_to post.user_name ,root_path ,class: "link_toUser_name"%>
+						</h4>
+					</object>
+			</div>
+			<div class="postAtagBox">
+				<%= simple_format post.body, class: "post_body" %>
+				<div class="postideoAndImage">
+					<% if post.video? %>
+						<%= video_tag post.video, :autoplay => true, :loop => true,controls: true, autobuffer: true ,class: "Postvideo"%>
+						<br>
+					<% end %>
+					<% if post.image? %>
+						<%= image_tag post.image.url,class: "imagePost" %>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+<script>
+
+	var video = document.getElementsByClassName('Postvideo');
+	for(var a of video){
+		a.volume = 0;
+	}
+</script>
