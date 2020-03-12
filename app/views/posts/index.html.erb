@@ -5,6 +5,7 @@
 	<%= link_to post_path(post), data: {"turbolinks" => false} ,class: "link_toBoxAtag" do %>
 		<div class="postBox">
 			<div class="userimageAndNameBox">
+				<%= link_to "DELETE", post_path(post), method: :delete %>
 				<% if post.user_image? %>
 					<div class="imageBox">
 						<object>
