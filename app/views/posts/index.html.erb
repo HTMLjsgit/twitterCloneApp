@@ -40,6 +40,7 @@
 						<%= image_tag post.image.url,class: "imagePost" %>
 					<% end %>
 				</div>
+				<%= render 'tag_list', tag_list: post.tag_list %>
 			</div>
 		</div>
 	<% end %>

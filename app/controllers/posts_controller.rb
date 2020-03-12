@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   private
 
   def create_params
-  	params.require(:post).permit(:body, :video, :image)
+  	params.require(:post).permit(:body, :video, :image, :tag_list)
   end
 
   def post_find
