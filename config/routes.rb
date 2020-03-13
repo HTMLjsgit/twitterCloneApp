@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'mypages/index'
   devise_for :users,controllers: { registrations: 'users/registrations' }
   get 'posts/index'
   root 'posts#index'

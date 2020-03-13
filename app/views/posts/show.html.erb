@@ -36,5 +36,5 @@
 	<script>
 		document.getElementById('video').volume = 0;
 	</script>
-	<%= @post.tag_list %>
+	<%= render 'tag_list' , tag_list: @post.tag_list%>
 </div>

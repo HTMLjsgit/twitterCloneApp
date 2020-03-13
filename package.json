@@ -1,5 +1,8 @@
 {
   "name": "twitterCloneApp",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bootstrap": "3",
+    "yarn": "^1.22.4"
+  }
 }

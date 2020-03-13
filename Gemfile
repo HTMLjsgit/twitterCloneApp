@@ -63,4 +63,3 @@ gem 'rmagick'
 gem 'devise'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem "jquery-rails"
-gem 'bootstrap', '~> 4.1.1'
