@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/show'
-  resources :users ,only: [:show,:update, :edit]
+  resources :users ,path: "user",only: [:show,:update, :edit]
   devise_for :users,controllers: { registrations: 'users/registrations' }
   get 'mypages/index'
   # get 'user/:id' => 'users#show'
