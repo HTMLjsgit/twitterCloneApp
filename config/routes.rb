@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   get 'users/show'
+  resources :users ,only: [:show,:update, :edit]
+  devise_for :users,controllers: { registrations: 'users/registrations' }
   get 'mypages/index'
   # get 'user/:id' => 'users#show'
   # たすけてえええええええええええええええええええええええええ
-  resources :user, only: [:show,:update, :edit]
-  devise_for :users,controllers: { registrations: 'users/registrations' }
   get 'posts/index'
   root 'posts#index'
   resources :posts
