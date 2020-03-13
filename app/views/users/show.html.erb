@@ -1,4 +1,10 @@
-<h5><%= @user.name %></h5>
-<p><%= @user.profile %></p><br>
-<%=  @user.image %><br><br>
-<%= link_to "プロフィール編集",edit_user_path %>
+<h5>名前: <%= @user.name %></h5>
+<p>プロフィール: <%= @user.profile %></p><br>
+<% if @user.image? %>
+	<%= image_tag @user.image.to_s  ,class: "userIconShow"%><br>
+<% else %>
+	<%= image_tag "人物アイコン.png"  ,class: "userIconShow"%><br>
+<% end %>
+<% if @user.id == current_user.id %>
+	<%= link_to "プロフィール編集",edit_user_path %>
+<% end %>

@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   before_action :is_mine, only: [:destroy]
   def index
   	@posts = Post.all
+    @users = User.all
   end
 
   def new

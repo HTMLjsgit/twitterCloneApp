@@ -5,30 +5,45 @@
 	<%= link_to post_path(post), data: {"turbolinks" => false} ,class: "link_toBoxAtag" do %>
 		<div class="postBox">
 			<div class="userimageAndNameBox">
-				<% if post.user_image? %>
-					<div class="imageBox">
-						<object>
-							<%= link_to root_path do %>
-								<%= image_tag post.user_image,class: "user_image" %>
-							<% end %>
-						</object>
-					</div>
-				<% else %>
-					<div class="imageBox">
-						<object>
-							<%= link_to root_path do %>
-								<%= image_tag "人物アイコン.png",class: "user_image" %>
-							<% end %>
-						</object>
-					</div>
+				<% @users.each do |user| %>
+					<% if user.image? %>
+						<% if post.user_id == user.id %>
+							<div class="imageBox">
+								<object>
+									<%= link_to user_path(post.user_id) do %>
+										<%= image_tag user.image.to_s,class: "user_image" %>
+									<% end %>
+								</object>
+							</div>
+							<object>
+								<h4>
+									<%= link_to user.name ,user_path(post.user_id) ,class: "link_toUser_name"%>
+								</h4>
+							</object>
+						<% end %>
+					<% else %>
+						<% if post.user_id == user.id %>
+							<div class="imageBox">
+								<object>
+									<%= link_to user_path(post.user_id) do %>
+										<%= image_tag "人物アイコン.png",class: "user_image" %>
+									<% end %>
+								</object>
+							</div>
+							<object>
+								<h4>
+									<%= link_to user.name ,user_path(post.user_id) ,class: "link_toUser_name"%>
+								</h4>
+							</object>
+						<% end %>
+					<% end %>
 				<% end %>
-					<object>
-						<h4>
-							<%= link_to post.user_name ,root_path ,class: "link_toUser_name"%>
-						</h4>
-					</object>
 			</div>
-			<object><%= link_to "DELETE", post_path(post), method: :delete ,class: "deletePost"%></object>
+				<% if post.user_id == current_user.id %>
+					<object>
+						<%= link_to "DELETE", post_path(post), method: :delete ,class: "deletePost"%>
+					</object>
+				<% end %>
 			<div class="postAtagBox">
 				<%= simple_format post.body, class: "post_body" %>
 				<div class="postideoAndImage">
