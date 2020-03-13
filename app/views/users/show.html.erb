@@ -1,10 +1,76 @@
-<h5>名前: <%= @user.name %></h5>
-<p>プロフィール: <%= @user.profile %></p><br>
-<% if @user.image? %>
-	<%= image_tag @user.image.to_s  ,class: "userIconShow"%><br>
-<% else %>
-	<%= image_tag "人物アイコン.png"  ,class: "userIconShow"%><br>
-<% end %>
+<title><%= @user.name %></title>
+<div class="profileBox">
+	<div class="UserimageAndName">
+		<% if @user.image? %>
+			<%= image_tag @user.image.to_s  ,class: "userIconShow"%><br>
+		<% else %>
+			<%= image_tag "人物アイコン.png"  ,class: "userIconShow"%><br>
+		<% end %>
+	</div>
+		<h3>名前: <%= @user.name %></h3>
+		<p>プロフィール: <%= @user.profile %></p><br>
+</div>
+
 <% if @user.id == current_user.id %>
 	<%= link_to "プロフィール編集",edit_user_path %>
+	<%= link_to "アカウント編集", edit_user_registration_path %>
 <% end %>
+
+<% @posts.each do |post| %>
+	<% if post.user_id == @user.id %>
+		<%= link_to post_path(post), data: {"turbolinks" => false} ,class: "link_toBoxAtag" do %>
+			<div class="postBox">
+				<div class="userimageAndNameBox">
+					<% if @user.image? %>
+						<div class="imageBox">
+							<object>
+								<%= link_to user_path(@user) do %>
+									<%= image_tag @user.image.to_s,class: "user_image" %>
+								<% end %>
+							</object>
+						</div>
+						<object>
+							<h4>
+								<%= link_to @user.name ,user_path(@user) ,class: "link_toUser_name"%>
+							</h4>
+						</object>
+					<% else %>
+						<object>
+							<%= link_to user_path(post.user_id) do %>
+								<%= image_tag "人物アイコン.png",class: "user_image" %>
+							<% end %>
+						</object>
+					<% end %>
+				</div>
+				<% if user_signed_in? %>
+					<% if post.user_id == current_user.id %>
+						<object>
+							<%= link_to "DELETE", post_path(post), method: :delete ,class: "deletePost"%>
+						</object>
+					<% end %>
+				<% end %>
+				<div class="postAtagBox">
+					<%= simple_format post.body, class: "post_body" %>
+						<div class="postideoAndImage">
+							<% if post.video? %>
+								<%= video_tag post.video, :autoplay => true, :loop => true,controls: true, autobuffer: true ,class: "Postvideo"%>
+								<br>
+							<% end %>
+							<% if post.image? %>
+								<%= image_tag post.image.url,class: "imagePost" %>
+							<% end %>
+						</div>
+						<%= render 'tag_list', tag_list: post.tag_list %>
+				</div>
+			</div>
+		<% end %>
+	<% end %>
+<% end %>
+<script>
+	var video = document.getElementsByClassName('Postvideo');
+    for(var a of video){
+      a.volume = 0;
+    }
+    document.getElementById('video').volume = 0;
+
+</script>

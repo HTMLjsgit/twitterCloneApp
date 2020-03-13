@@ -33,8 +33,13 @@
 		<% end %>
 	</div>
 
-	<script>
-		document.getElementById('video').volume = 0;
-	</script>
 	<%= render 'tag_list' , tag_list: @post.tag_list%>
 </div>
+<script>
+	var video = document.getElementsByClassName('Postvideo');
+    for(var a of video){
+      a.volume = 0;
+    }
+    document.getElementById('video').volume = 0;
+
+</script>

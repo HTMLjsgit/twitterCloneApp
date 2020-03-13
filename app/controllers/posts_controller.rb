@@ -28,6 +28,11 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    @q = Post.ransack(params[:q])
+    @posts = @q.result(distinct: true)
+    @users = User.all
+  end
   private
 
   def create_params

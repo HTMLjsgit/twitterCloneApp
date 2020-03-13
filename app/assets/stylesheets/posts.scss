@@ -6,9 +6,10 @@ body{
 
 }
 .postBox{
-	margin-top: 10%;
+	margin-bottom: 10%;
 	border: 1px solid #ddd;
 }
+
 .postBox:hover{
 	/*transition: background-color 0.5s ease ;*/
 	transition-property: background-color;
@@ -86,4 +87,9 @@ a{
 .deletePost{
 	text-align:right;
 	
+}
+.search_box{
+	position: sticky;
+	top: 10px;
+	left: 50%;
 }

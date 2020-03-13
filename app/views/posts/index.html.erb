@@ -1,6 +1,4 @@
-<% if user_signed_in? %>
-	<%= link_to "new" , new_post_path  ,data: {"turbolinks" => false}%>
-<% end %>
+
 <% @posts.each do |post| %>
 	<%= link_to post_path(post), data: {"turbolinks" => false} ,class: "link_toBoxAtag" do %>
 		<div class="postBox">
@@ -39,11 +37,13 @@
 					<% end %>
 				<% end %>
 			</div>
+			<% if user_signed_in? %>
 				<% if post.user_id == current_user.id %>
 					<object>
 						<%= link_to "DELETE", post_path(post), method: :delete ,class: "deletePost"%>
 					</object>
 				<% end %>
+			<% end %>
 			<div class="postAtagBox">
 				<%= simple_format post.body, class: "post_body" %>
 				<div class="postideoAndImage">
@@ -60,11 +60,11 @@
 		</div>
 	<% end %>
 <% end %>
-
 <script>
-
 	var video = document.getElementsByClassName('Postvideo');
-	for(var a of video){
-		a.volume = 0;
-	}
+    for(var a of video){
+      a.volume = 0;
+    }
+    document.getElementById('video').volume = 0;
+
 </script>
