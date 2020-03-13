@@ -11,38 +11,40 @@
   </head>
 
   <body>
-    <div class="topMaeBox">
-        <div class="TopMenuBox">
-            <div class="TopLinkBox">
-                <%= link_to root_path ,data: {"turbolinks" => false} do %>
-                    <div class="top_imageBox">
-                        <%= image_tag "twittericon (1).png",class: "top_image" %>
-                    </div>
-                    <div class="search_imageBox">
-                        <%= link_to  posts_search_path ,data: {"turbolinks" => false} do %>
-                            <%= image_tag "検索アイコン1 (1).png" ,class: "search_image" %>
-                        <% end %>
-                    </div>
-                    <div class="PostnewBox">
-                        <%= link_to new_post_path, data: {"turbolinks" => false} do %>
-                            <div class="twitter_imageBox">
-                              <%= image_tag "twitternew.png", class: "twitternew_image"%>
-                            </div>
-                        <% end %>
-                    </div>
+    <div class="appAll">
+        <div class="topMaeBox">
+            <div class="TopMenuBox">
+                <div class="TopLinkBox">
+                    <%= link_to root_path ,data: {"turbolinks" => false} do %>
+                        <div class="top_imageBox">
+                            <%= image_tag "twittericon (1).png",class: "top_image" %>
+                        </div>
+                        <div class="search_imageBox">
+                            <%= link_to  posts_search_path ,data: {"turbolinks" => false} do %>
+                                <%= image_tag "検索アイコン1 (1).png" ,class: "search_image" %>
+                            <% end %>
+                        </div>
+                        <div class="PostnewBox">
+                            <%= link_to new_post_path, data: {"turbolinks" => false} do %>
+                                <div class="twitter_imageBox">
+                                  <%= image_tag "twitternew.png", class: "twitternew_image"%>
+                                </div>
+                            <% end %>
+                        </div>
+                    <% end %>
+                  </div>
+                <% if user_signed_in? %>
+                    <%= link_to "ログアウト", destroy_user_session_path ,method: :delete, class: "login", data: {"turbolinks" => false} %>
+                <% else %>
+                    <%= link_to "ログイン", new_user_session_path,class: "login", data: {"turbolinks" => false} %>
+                    <%= link_to "新規登録", new_user_registration_path ,class: "logout", data: {"turbolinks" => false} %>
                 <% end %>
-              </div>
-            <% if user_signed_in? %>
-                <%= link_to "ログアウト", destroy_user_session_path ,method: :delete, class: "login", data: {"turbolinks" => false} %>
-            <% else %>
-                <%= link_to "ログイン", new_user_session_path,class: "login", data: {"turbolinks" => false} %>
-                <%= link_to "新規登録", new_user_registration_path ,class: "logout", data: {"turbolinks" => false} %>
-            <% end %>
+            </div>
         </div>
-    </div>
 
     <div class="index_post_allBox">
         <%= yield %>
+    </div>
     </div>
   </body>
 </html>

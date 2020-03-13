@@ -52,6 +52,8 @@
 .TopMenuBox{
 
 }
+.index_post_allBox{
+}
 .search_imageBox{
 	border-radius: 50%;
 	display: flex;
@@ -71,4 +73,7 @@
 }
 .search_imageBox:hover{
 	background-color: rgba(29,161,242,0.1);
+}
+.appAll{
+	display: flex;
 }
